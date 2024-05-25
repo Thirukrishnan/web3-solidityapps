@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 
 contract twitter{
-    mapping (address => string[]) public tweets;
+    mapping (address => string[]) private tweets;
    string[] private arrtweets;
 
    function push_tweet(string memory tweet) public{
@@ -14,7 +14,10 @@ contract twitter{
         tweets[msg.sender]=arrtweets;
 
     }
-    function show_tweet()public view returns (string[] memory) {
+    function get_alltweets()public view returns (string[] memory) {
         return tweets[msg.sender];
+    }
+    function get_tweet(uint index) public view returns(string memory){
+        return tweets[msg.sender][index];
     }
 }
